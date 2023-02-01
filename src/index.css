@@ -1,0 +1,70 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Nunito:200,300,regular,500,600,700,800,900,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant:wght@400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Firefox */
+/* * {
+  scrollbar-width: thin;
+  scrollbar-color: #FFFFFF #DFE9EB;
+  scroll-behavior: smooth;
+} */
+
+/* Chrome, Edge and Safari */
+body::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+body::-webkit-scrollbar-track {
+  border-radius: 5px;
+   
+  background-color: #8f8f8f;
+}
+ 
+
+body::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: #3abff8;
+ 
+} 
+
+
+ 
+html, body {
+  scroll-behavior: smooth ;
+  overflow-x: hidden;
+}
+
+@layer base {
+  html {
+    font-family: Montserrat , sans-serif ;
+  }
+  .trans{
+    @apply transition-all duration-300 ease-in-out
+  }
+  .dropdown {
+    @apply w-full cursor-pointer;
+  }
+  .dropdown-btn {
+    @apply w-full  flex h-[64px] items-center px-[18px] border rounded-lg;
+  }
+  .dropdown-icon-primary {
+    @apply text-2xl mr-[18px] text-orange-100;
+  }
+  .dropdown-icon-secondary {
+    @apply ml-auto text-2xl text-orange-100;
+  }
+  .dropdown-menu {
+    @apply    bg-gray-800  text-[15px]  shadow-md  absolute w-full z-10 list-none rounded-b-lg;
+  }
+}
