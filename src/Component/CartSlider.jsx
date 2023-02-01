@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { handleOpenCartState, openCart } from "../store/items-Slice";
 const CartSlider = () => {
   // const isCartOpen = useSelector(openCart)
-  const disatch = useDispatch()
+  const dispatch = useDispatch()
   return (
     <motion.div
       initial={{ opacity: 0, x: 1000 }}
@@ -26,7 +26,7 @@ const CartSlider = () => {
         {/* //? top section */}
 
         <div className=" flex mb-6 justify-between items-center w-full px-8 ">
-          <div className="cursor-pointer hover:text-fuchsia-500 trans duration-100 " onClick={()=> disatch( handleOpenCartState() )} >
+          <div className="cursor-pointer hover:text-fuchsia-500 trans duration-100 " onClick={()=> dispatch( handleOpenCartState() )} >
             {" "}
             <IoArrowBackCircleSharp size={45} />{" "}
           </div>
