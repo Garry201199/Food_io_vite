@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{useEffect} from "react";
 import bike from "../img/delivery.png";
 import bg from "../img/heroBg.png";
 import { heroData } from "../utils/heroData";
@@ -26,11 +26,10 @@ const HomeContainer = () => {
 
   const isCartOpen = useSelector( openCart )
   console.log(isCartOpen);
-  // if (checkingStatus) {
-  //   <h1 className="mt-24 text-2xl whitespace-pre-wrap text-cyan-100">
-  //     Wait for it GUys
-  //   </h1>;
-  // }
+ useEffect(() => {
+   window.innerWidth <= 768 ? console.log('width sm is' + window.innerWidth ) : console.log('width not sm is' + window.innerWidth ) ; 
+ }, [window.innerWidth ])
+ 
   return (
     <>
     <motion.section
@@ -129,7 +128,7 @@ const HomeContainer = () => {
     <FilterFoodsSection/>
     <AnimatePresence mode='wait' >
     {
-      isCartOpen && <CartSlider />
+      isCartOpen && <CartSlider isSmallDev={window.innerWidth <= 768 ? true : false }  />
     }
     </AnimatePresence>
     </>

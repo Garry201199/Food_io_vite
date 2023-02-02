@@ -35,11 +35,20 @@ module.exports = {
         cartBg: "#282a2c",
         cartItem: "#2e3033",
         cartTotal: "#343739",
+        bgZero:'#040404',
+        bgOne:'#1c1d1f',
+        bgTwo:'#282a2c',
+        bgThree:'#343739',
+        bgFour:'#404447',
+        bgFive:'#4c5054',
+         
+
       },
       boxShadow: {
         'neo': '5px 5px 10px #141414,-5px -5px 10px #525252',
         'neo2' :'7px 7px 14px #141414, -7px -7px 14px #525252;',
-        'inner' : 'box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.6)'
+        'inner' : 'box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.6)',
+        'optionShadow' : 'box-shadow:  10px -10px 20px #060707,-10px 10px 20px #1a1b1b;'
       },
       
     },

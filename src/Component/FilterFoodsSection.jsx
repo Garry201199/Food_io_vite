@@ -18,7 +18,7 @@ import { Items } from "../store/items-Slice";
 // }
 const FilterFoodsSection = () => {
   const [filter, setFilter] = useState("Chicken");
-  console.log(filter);
+ 
   const items = useSelector(Items);
 
 
@@ -39,11 +39,11 @@ const FilterFoodsSection = () => {
               <motion.div
                 whileTap={{ scale: 0.85 }}
                 key={category.id}
-                className={`group  ${
+                className={`group   ${
                   filter === category.urlParamName
                     ? "bg-[#918ced]"
-                    : "bg-[#24252b]"
-                }   cursor-pointer w-24 md:w-28 min-w-[94px] h-28 hover:bg-[#918ced]  rounded-lg drop-shadow-xl flex flex-col gap-3 items-center justify-center   `}
+                    : "bg-bgTwo" 
+                }   cursor-pointer w-24 md:w-28 min-w-[94px] h-28 hover:bg-[#918ced]  rounded-lg drop-shadow-xl  flex flex-col gap-3 items-center justify-center   `}
                 onClick={() => setFilter(category.urlParamName)}
               >
                 <div

@@ -35,7 +35,7 @@ const Header = () => {
   return (
     <div>
       {/* Desktop AppBar  */}
-      <div className=" w-full py-3 justify-between  z-10 top-0 fixed hidden px-8  md:flex bg-[#1f2229] shadow-slate-600/50 shadow-lg  ">
+      <div className=" w-full py-3 justify-between  z-10 top-0 fixed hidden px-8  md:flex bg-bgTwo shadow-slate-600/50 shadow-lg  ">
         <Link to="/" className="relative flex items-center justify-center ml-8">
           <img src={icon} className="w-12 h-12 bg-inherit" alt="icons"></img>
           <button className="px-3 text-2xl font-semibold text-white normal-case font-Pop">
@@ -68,7 +68,8 @@ const Header = () => {
           </ul>
     
               <div className="hover:bg-gray-500/50 trans rounded-full p-2 mx-3 " onClick={()=> dispatch(handleOpenCartState()) }  >
-                <svg
+                <div className="relative  ">
+                  <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-8 cursor-pointer h-8"
                   fill="none"
@@ -82,6 +83,9 @@ const Header = () => {
                     d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                   />
                 </svg>
+                <span className=" bg-orange-400 text-gray-100 rounded-full flex items-center justify-center absolute -top-1 -right-2 h-5  min-w-min w-5  font-semibold ">8</span>
+                </div>
+                
               </div>
          
 
@@ -112,12 +116,11 @@ const Header = () => {
       {/* Mobile AppBar  */}
       <div className=" w-full shadow-slate-600/70 shadow-lg bg-[#1b1d20]  h-[80px] py-3 z-10 fixed  flex justify-between items-center px-2 md:hidden ">
         <div className="">
-          <div className="dropdown dropdown-content ">
-            <label tabIndex="0" className="btn btn-ghost btn-circle">
-              <div className="indicator">
-                <svg
+        <div className="hover:bg-gray-500/50 trans rounded-full p-2 mx-3 " onClick={()=> dispatch(handleOpenCartState()) }  >
+                <div className="relative  ">
+                  <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-8 h-8"
+                  className="w-8 cursor-pointer h-8"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -129,27 +132,10 @@ const Header = () => {
                     d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                   />
                 </svg>
-
-                <span className="p-1 rounded-full badge badge-primary indicator-item">
-                  8
-                </span>
-              </div>
-            </label>
-            <div
-              tabIndex="0"
-              className="mt-3 bg-gray-800 shadow card card-compact dropdown-content w-52"
-            >
-              <div className="card-body">
-                <span className="text-lg font-bold">8 Items</span>
-                <span className="text-info">Subtotal: $999</span>
-                <div className="card-actions">
-                  <button className="btn btn-primary btn-block">
-                    View cart
-                  </button>
+                <span className=" bg-orange-400 text-gray-100 rounded-full flex items-center justify-center absolute -top-1 -right-2 h-5  min-w-min w-5  font-semibold ">8</span>
                 </div>
+                
               </div>
-            </div>
-          </div>
         </div>
         <div className="flex items-center justify-center ">
           <img src={icon} className="w-12 h-12" alt="icons"></img>
@@ -208,7 +194,7 @@ const Header = () => {
                   x: 1000,
                   transition: { ease : [0.32, 0, 0.67, 0],type: "linear", duration: 1 },
                 }}
-                className="absolute z-20 w-screen  px-8  top-[80px] -right-2 max-w-screen h-screen bg-gray-900 "
+                className="absolute z-20 w-screen max-w-screen px-8  top-[80px] -right-2  h-screen bg-gray-900 "
               >
                 <div className="flex flex-col items-center justify-center w-full py-12 space-y-9 ">
                   <div className="relative w-16 h-16 rounded-full md:w-24 drop-shadow-2xl">

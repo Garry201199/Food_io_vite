@@ -33,12 +33,15 @@ function App() {
     dispatch(setInitialUser(initialUser))
   }
   useEffect(() => {
+    window.onload = (event) => {
+      console.log("page is fully loaded");
+    };
     getData()
   }, [])
 
   return (
     <AuthcontextProvider>
-      <div className="relative   w-screen  overflow-hidden min-h-screen select-none bg-[#16181d] flex flex-col ">
+      <div className="relative   w-screen  overflow-hidden min-h-screen select-none bg-bgOne flex flex-col ">
   
         <AnimatePresence mode='wait'  >
           <Routes location={location} key={location.pathname} >

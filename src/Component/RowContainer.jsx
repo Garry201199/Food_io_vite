@@ -3,7 +3,6 @@ import { BsBucketFill } from "react-icons/bs";
 import { AnimatePresence, motion } from "framer-motion";
 import Page_Not_Found from "../img/NotFound.svg";
 const RowContainer = forwardRef(({ foodItems, flag }, ref) => {
-  console.log(flag + "flag");
 
   // const ref = useRef(null);
   // const { scrollXProgress } = useScroll({ container: ref })
@@ -65,14 +64,14 @@ const RowContainer = forwardRef(({ foodItems, flag }, ref) => {
               exit={listVariants.exit(index)}
               transition={{ type: "linear", ease: "easeIn", duration: 0.6 }}
               key={i.id}
-              className="bg-[#24252b]/80 shadow-neo  min-w-[200px] max-h-fit   md:min-w-[380px]   md:min-h-[240px]  
+              className="bg-bgTwo shadow-neo  min-w-[200px] max-h-fit   md:min-w-[380px]   md:min-h-[240px]  
             border-r border-whiteAlpha border-b
            hover:shadow-neo2  group p-2  md:p-4  rounded-lg  mx-3   "
             >
-              <div className="flex  flex-col md:flex-row items-center justify-between">
-                <div className="flex justify-between w-full    ">
+              <div className="flex flex-col md:flex-row items-center justify-between">
+                <div className="flex  justify-between w-full    ">
                   <img
-                    className="object-scale-down trans w-28 h-28 md:w-40 md:h-40 -mt-12 md:-mt-24 rouded-full group-hover:scale-125  duration-600"
+                    className="object-scale-down   trans w-28 h-28 md:w-40 md:h-40 -mt-12 md:-mt-24 rouded-full group-hover:scale-125  duration-600"
                     src={i?.imageUrl}
                     alt={i.title}
                   />
@@ -84,7 +83,7 @@ const RowContainer = forwardRef(({ foodItems, flag }, ref) => {
                   </motion.div>
                 </div>
 
-                <div className="flex flex-col h-full  w-full justify-between  gap-y-4 ">
+                <div className="flex   flex-col h-full  w-2/3 justify-between  gap-y-4 ">
                   <motion.div
                     whileTap={{ scale: 0.8 }}
                     className=" hidden w-10 self-end h-10 cursor-pointer md:flex items-center justify-center bg-[#eb2f06] text-white rounded-full"
