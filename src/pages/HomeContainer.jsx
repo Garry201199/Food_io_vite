@@ -8,7 +8,8 @@ import FoodSection from "../Component/FoodSection";
 import FilterFoodsSection from "../Component/FilterFoodsSection";
 import CartSlider from "../Component/CartSlider";
 import { useSelector } from "react-redux";
-import { openCart } from "../store/items-Slice";
+import { openCart } from "../store/cart-Slice";
+
 const container = {
     hidden: {
       opacity:0
@@ -25,10 +26,7 @@ const HomeContainer = () => {
  
 
   const isCartOpen = useSelector( openCart )
-  console.log(isCartOpen);
- useEffect(() => {
-   window.innerWidth <= 768 ? console.log('width sm is' + window.innerWidth ) : console.log('width not sm is' + window.innerWidth ) ; 
- }, [window.innerWidth ])
+
  
   return (
     <>

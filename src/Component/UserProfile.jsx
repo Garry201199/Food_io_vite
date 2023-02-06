@@ -6,7 +6,7 @@ import useAuthStatus from "../hooks/useAuthStatus";
 import { useNavigate } from "react-router-dom";
 import { motion,} from "framer-motion";
 const UserProfile = ({ setOpenProfile, openProfile }) => {
-  const { currentUser, onlogOut } = useContext(AuthContext);
+  const { currentUser, onLogout } = useContext(AuthContext);
   const { loggedIn } = useAuthStatus();
   const navigate = useNavigate()
 
@@ -109,7 +109,7 @@ focus:shadow-outline focus:outline-none"
 
             <button
               onClick={() => {
-                loggedIn ? onlogOut() : navigate("/login");
+                loggedIn ? onLogout() : navigate("/login");
               }}
               className="inline-flex items-center justify-center 
        w-full h-8 md:h-12 px-6 font-semibold md:tracking-wide

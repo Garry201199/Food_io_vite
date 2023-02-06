@@ -9,10 +9,11 @@ import {
 } from "firebase/auth";
 import { createContext, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { redirect, useNavigate  } from "react-router-dom";
+import { useNavigate  } from "react-router-dom";
 import { toast } from "react-toastify";
 import { app } from "../firebase.config";
 import useAuthStatus from "../hooks/useAuthStatus";
+import {  handleClearCart } from "../store/cart-Slice";
 import { removeUser, setInitialUser, User } from "../store/user-Slice";
 
 const AuthContext = createContext();
@@ -72,12 +73,14 @@ export const AuthcontextProvider = ({ children }) => {
         toast.error(errorMessage);
       });
   };
-  const onlogOut=()=>{
+  const onLogout=  ()=>{
+    dispatch(handleClearCart());
     signOut(auth).
     then(() => {
       localStorage.removeItem('user')
       toast.warn(`${loggedUser.user[0].displayName ?? loggedUser.user[0].email } logged out !!  `);
-      dispatch(removeUser())
+      dispatch(removeUser());
+      
       navigate('/login')
     }).catch((error) => {
       toast.warn(error);
@@ -122,7 +125,7 @@ export const AuthcontextProvider = ({ children }) => {
         setLoginInfo,
         onSignUp,
         currentUser,
-        onlogOut,
+        onLogout,
         forgotPassword,
         loggedIn, checkingStatus
       }}

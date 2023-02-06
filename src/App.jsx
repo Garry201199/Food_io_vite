@@ -1,6 +1,6 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import CreateContainer from "./pages/CreateContainer";
-import { AnimatePresence ,motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import LoginPage from "./Component/Auth/LoginPage";
 import SignUpPage from "./Component/Auth/SignUpPage";
 import ForgotPassword from "./Component/Auth/ForgotPassword";
@@ -9,66 +9,59 @@ import ProtectedRoutes from "./Component/Auth/ProtectedRoutes";
 import MainContainer from "./Component/MainContainer";
 import HomeContainer from "./pages/HomeContainer";
 import { variants } from "./variants/variants";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { getAllItems } from "./utils/firebaseFunctions";
-import { useEffect, useRef } from "react";
-import {setAllItems } from './store/items-Slice'
+import { useEffect  } from "react";
+import { setAllItems } from "./store/items-Slice";
 import { fetchLocalStorageData } from "./utils/fetchLocalStorage";
 import { setInitialUser } from "./store/user-Slice";
- import './App.css'
+import "./App.css";
 function App() {
-  const location = useLocation()
-  const dispatch = useDispatch()
+  const location = useLocation();
+  const dispatch = useDispatch();
 
-
-  const getData =async()=>{
-    // ! setting all food items to the state 
+  const getData = async () => {
+    // ! setting all food items to the state
     await getAllItems().then((data) => {
-
-        dispatch( setAllItems(data))
-       
-    })
-    // ! setting  initial User to the state 
-    const initialUser = await fetchLocalStorageData()
-    dispatch(setInitialUser(initialUser))
-  }
+      dispatch(setAllItems(data));
+    });
+    // ! setting  initial User to the state
+    const initialUser = await fetchLocalStorageData();
+    dispatch(setInitialUser(initialUser));
+  };
   useEffect(() => {
-    window.onload = (event) => {
-      console.log("page is fully loaded");
-    };
-    getData()
-  }, [])
+    getData();
+  }, []);
 
   return (
     <AuthcontextProvider>
       <div className="relative   w-screen  overflow-hidden min-h-screen select-none bg-bgOne flex flex-col ">
-  
-        <AnimatePresence mode='wait'  >
-          <Routes location={location} key={location.pathname} >
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
             <Route element={<ProtectedRoutes />}>
               <Route
-                exact path="/"
+                exact
+                path="/"
                 element={
-                  <motion.div 
-                  className="overflow-y-hidden"
-                  initial={variants.initial}
-      animate={variants.animate}
-      exit={variants.exit}
-
-                   >
-                    
-                    <MainContainer children={<HomeContainer/> } />
+                  <motion.div
+                    className="overflow-y-hidden"
+                    initial={variants.initial}
+                    animate={variants.animate}
+                    exit={variants.exit}
+                  >
+                    <MainContainer children={<HomeContainer />} />
                   </motion.div>
                 }
               />
               <Route
                 path="/createItem"
                 element={
-                  <motion.div 
-                  initial={variants.initial}
-      animate={variants.animate}
-      exit={variants.exit} >
-                    <MainContainer children={<CreateContainer/>} />
+                  <motion.div
+                    initial={variants.initial}
+                    animate={variants.animate}
+                    exit={variants.exit}
+                  >
+                    <MainContainer children={<CreateContainer />} />
                   </motion.div>
                 }
               />
@@ -82,6 +75,5 @@ function App() {
     </AuthcontextProvider>
   );
 }
-
 
 export default App;

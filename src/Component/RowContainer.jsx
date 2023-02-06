@@ -2,8 +2,9 @@ import React, { forwardRef } from "react";
 import { BsBucketFill } from "react-icons/bs";
 import { AnimatePresence, motion } from "framer-motion";
 import Page_Not_Found from "../img/NotFound.svg";
-const RowContainer = forwardRef(({ foodItems, flag }, ref) => {
-
+import { addItemsToCart } from "../store/cart-Slice";
+import { useDispatch } from "react-redux";
+const RowContainer = forwardRef(({ foodItems, isSmallDev, flag }, ref) => {
   // const ref = useRef(null);
   // const { scrollXProgress } = useScroll({ container: ref })
   // console.log(scrollXProgress);
@@ -15,6 +16,8 @@ const RowContainer = forwardRef(({ foodItems, flag }, ref) => {
   //   damping: 30,
   //   restDelta: 0.001
   // });
+  const dispatch = useDispatch();
+
   const container = {
     hidden: { opacity: 0 },
     visible: {
@@ -41,7 +44,7 @@ const RowContainer = forwardRef(({ foodItems, flag }, ref) => {
     }),
   };
   return (
-    <AnimatePresence mode="wait" initial={false}>
+    <AnimatePresence mode="wait">
       <motion.div
         layout
         variants={container}
@@ -52,7 +55,7 @@ const RowContainer = forwardRef(({ foodItems, flag }, ref) => {
           flag
             ? "overflow-x-scroll justify-between"
             : "flex-wrap justify-center space-x-4 space-y-4 "
-        }  scroll-x-4 px-4 transition-all   rounded-lg ease-linear duration-300 place-items-center  scroll-smooth scrollbar-none flex     my-4 text-slate-100 py-12 space-x-2 md:gap-3  `}
+        }  scroll-x-4 px-4 transition-all   rounded-lg ease-linear duration-300 place-items-center  scroll-smooth scrollbar-none flex     my-4 text-slate-100 py-12 gap-y-4 gap-x-6 `}
       >
         {foodItems && foodItems.length > 1 ? (
           foodItems?.map((i, index) => (
@@ -64,28 +67,34 @@ const RowContainer = forwardRef(({ foodItems, flag }, ref) => {
               exit={listVariants.exit(index)}
               transition={{ type: "linear", ease: "easeIn", duration: 0.6 }}
               key={i.id}
-              className="bg-bgTwo shadow-neo  min-w-[200px] max-h-fit   md:min-w-[380px]   md:min-h-[240px]  
+              className="bg-bgTwo shadow-neo  min-w-[300px] max-h-fit   md:min-w-[380px] md:max-w-min   md:min-h-[240px]  
             border-r border-whiteAlpha border-b
-           hover:shadow-neo2  group p-2  md:p-4  rounded-lg  mx-3   "
+           hover:shadow-neo2  group p-2  md:p-4  rounded-lg     "
             >
               <div className="flex flex-col md:flex-row items-center justify-between">
                 <div className="flex  justify-between w-full    ">
                   <img
-                    className="object-scale-down   trans w-28 h-28 md:w-40 md:h-40 -mt-12 md:-mt-24 rouded-full group-hover:scale-125  duration-600"
+                    className="object-scale-down   trans w-28 h-28 md:w-40 md:h-40 -mt-12 md:-mt-24 rounded-full group-hover:scale-125  duration-600"
                     src={i?.imageUrl}
                     alt={i.title}
                   />
                   <motion.div
+                    onClick={() => {
+                      dispatch(addItemsToCart(i));
+                    }}
                     whileTap={{ scale: 0.8 }}
-                    className=" md:hidden -mt-4  w-10 self-start h-10 cursor-pointer flex items-center justify-center bg-[#eb2f06] text-white rounded-full"
+                    className=" md:hidden  -mt-4  w-10 self-start h-10 cursor-pointer flex items-center justify-center bg-[#eb2f06] text-white rounded-full"
                   >
                     <BsBucketFill size={25} />
                   </motion.div>
                 </div>
 
-                <div className="flex   flex-col h-full  w-2/3 justify-between  gap-y-4 ">
+                <div className="flex  flex-col h-full  w-full  md:w-2/3 justify-between  gap-y-4 ">
                   <motion.div
                     whileTap={{ scale: 0.8 }}
+                    onClick={() => {
+                      dispatch(addItemsToCart(i));
+                    }}
                     className=" hidden w-10 self-end h-10 cursor-pointer md:flex items-center justify-center bg-[#eb2f06] text-white rounded-full"
                   >
                     <BsBucketFill size={25} />

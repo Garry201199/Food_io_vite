@@ -15,8 +15,7 @@ export const getAllItems =async()=>{
       orderBy('id' ,'desc') ))
       .then((res) =>  res.docs.map((doc) =>  doc.data()))
       .then(data => data)
-     //  console.log(result);
-      
+     //  console.log(result);   
      return result 
 }
 

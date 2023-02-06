@@ -12,8 +12,8 @@ import {
   MdMenu,
   MdRestaurantMenu,
 } from "react-icons/md";
-import { useDispatch } from "react-redux";
-import { handleOpenCartState } from "../store/items-Slice";
+import { useDispatch, useSelector } from "react-redux";
+import { cartItems, handleOpenCartState } from "../store/cart-Slice";
 const menuItems = [
   { id: 0, title: "Home" },
   { id: 1, title: "Menu" },
@@ -29,9 +29,10 @@ const menuItems = [
 ];
 const Header = () => {
   const [openProfile, setOpenProfile] = useState(false);
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const { currentUser, loggedIn, onlogOut } = useContext(AuthContext);
+  const { currentUser, loggedIn, onLogout } = useContext(AuthContext);
+  const cartItemsLength = useSelector( cartItems )
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   return (
     <div>
       {/* Desktop AppBar  */}
@@ -50,7 +51,7 @@ const Header = () => {
         </Link>
         <div className="flex items-center justify-center mr-8">
           <ul className="flex items-center justify-center text-lg normal-case gap-x-12">
-            <AnimatePresence mode='wait'>
+            <AnimatePresence mode="wait">
               {menuItems &&
                 menuItems.map((i, index) => (
                   <motion.li
@@ -66,28 +67,34 @@ const Header = () => {
                 ))}
             </AnimatePresence>
           </ul>
-    
-              <div className="hover:bg-gray-500/50 trans rounded-full p-2 mx-3 " onClick={()=> dispatch(handleOpenCartState()) }  >
-                <div className="relative  ">
-                  <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-8 cursor-pointer h-8"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                  />
-                </svg>
-                <span className=" bg-orange-400 text-gray-100 rounded-full flex items-center justify-center absolute -top-1 -right-2 h-5  min-w-min w-5  font-semibold ">8</span>
-                </div>
-                
-              </div>
-         
+
+          <div
+            className="hover:bg-gray-500/50 trans rounded-full p-2 mx-3 "
+            onClick={() => dispatch(handleOpenCartState())}
+          >
+            <div className="relative  ">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-8 cursor-pointer h-8"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                />
+              </svg>
+              {cartItemsLength && cartItemsLength.length > 0 && (
+                <span className=" bg-orange-400 text-gray-100 rounded-full flex items-center justify-center absolute -top-1 -right-2 h-5  min-w-min w-5  font-semibold ">
+                {cartItemsLength.length}
+              </span>
+              ) }      
+              
+            </div>
+          </div>
 
           <div
             onClick={() => setOpenProfile(!openProfile)}
@@ -116,26 +123,32 @@ const Header = () => {
       {/* Mobile AppBar  */}
       <div className=" w-full shadow-slate-600/70 shadow-lg bg-[#1b1d20]  h-[80px] py-3 z-10 fixed  flex justify-between items-center px-2 md:hidden ">
         <div className="">
-        <div className="hover:bg-gray-500/50 trans rounded-full p-2 mx-3 " onClick={()=> dispatch(handleOpenCartState()) }  >
-                <div className="relative  ">
-                  <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-8 cursor-pointer h-8"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                  />
-                </svg>
-                <span className=" bg-orange-400 text-gray-100 rounded-full flex items-center justify-center absolute -top-1 -right-2 h-5  min-w-min w-5  font-semibold ">8</span>
-                </div>
-                
-              </div>
+          <div
+            className="hover:bg-gray-500/50 trans rounded-full p-2 mx-3 "
+            onClick={() => dispatch(handleOpenCartState())}
+          >
+            <div className="relative  ">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-8 cursor-pointer h-8"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                />
+              </svg>
+              {cartItemsLength && cartItemsLength.length > 0 && (
+                <span className=" bg-orange-400 text-gray-100 rounded-full flex items-center justify-center absolute -top-1 -right-2 h-5  min-w-min w-5  font-semibold ">
+                {cartItemsLength.length}
+              </span>
+              ) } 
+            </div>
+          </div>
         </div>
         <div className="flex items-center justify-center ">
           <img src={icon} className="w-12 h-12" alt="icons"></img>
@@ -144,9 +157,7 @@ const Header = () => {
             className="relative px-3 text-2xl font-semibold text-white normal-case font-Pop"
           >
             Food.io
-            <div
-              className="absolute top-0 left-0 w-full h-full rounded-full -z-10 rotate-3 animate-pulse opacity-80 blur-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 "
-            ></div>
+            <div className="absolute top-0 left-0 w-full h-full rounded-full -z-10 rotate-3 animate-pulse opacity-80 blur-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 "></div>
           </Link>
         </div>
 
@@ -187,12 +198,16 @@ const Header = () => {
                 animate={{
                   opacity: 1,
                   x: 0,
-                  transition: { ease:[0.25, 1, 0.5, 1] , duration: 0.5 },
+                  transition: { ease: [0.25, 1, 0.5, 1], duration: 0.5 },
                 }}
                 exit={{
                   opacity: 0,
                   x: 1000,
-                  transition: { ease : [0.32, 0, 0.67, 0],type: "linear", duration: 1 },
+                  transition: {
+                    ease: [0.32, 0, 0.67, 0],
+                    type: "linear",
+                    duration: 1,
+                  },
                 }}
                 className="absolute z-20 w-screen max-w-screen px-8  top-[80px] -right-2  h-screen bg-gray-900 "
               >
@@ -230,7 +245,7 @@ const Header = () => {
 
                   {/* menu items */}
                   <ul className="flex flex-col items-center justify-center w-full space-y-3 trans text-semibold text-slate-100 ">
-                    <AnimatePresence mode='wait'>
+                    <AnimatePresence mode="wait">
                       {menuItems &&
                         menuItems.map((i, index) => (
                           <motion.li
@@ -264,7 +279,7 @@ focus:shadow-outline focus:outline-none"
 
                     <button
                       onClick={() => {
-                        loggedIn ? onlogOut() : navigate("/login");
+                        loggedIn ? onLogout() : navigate("/login");
                       }}
                       className="inline-flex items-center justify-center 
        w-full h-8 md:h-12 px-6 font-semibold md:tracking-wide
@@ -307,7 +322,7 @@ const variants = {
       delay: i * 0.5,
     },
   }),
- 
+
   removed: {
     opacity: 0,
   },

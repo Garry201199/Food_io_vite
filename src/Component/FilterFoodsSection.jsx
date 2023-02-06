@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { categories } from "../utils/heroData";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, AnimateSharedLayout, motion } from "framer-motion";
 import RowContainer from "./RowContainer";
 import { useSelector } from "react-redux";
 import { Items } from "../store/items-Slice";
@@ -32,8 +32,9 @@ const FilterFoodsSection = () => {
           </span>
         </p>
       </div>
-      <AnimatePresence mode="wait" initial={false}>
-        <div className=" flex  px-4 gap-6  rounded-lg mt-3 drop-shadow-lg justify-start  py-6 scrollbar-none lg:justify-center items-center overflow-x-auto scroll-smooth  w-full  ">
+      {/* <AnimatePresence mode="wait" initial={false}> */}
+      <AnimateSharedLayout type="crossfade" >
+        <div layoutid='row' className=" flex  px-4 gap-6  rounded-lg mt-3 drop-shadow-lg justify-start  py-6 scrollbar-none lg:justify-center items-center overflow-x-auto scroll-smooth  w-full  ">
           {categories &&
             categories.map((category, index) => (
               <motion.div
@@ -67,15 +68,17 @@ const FilterFoodsSection = () => {
               </motion.div>
             ))}
         </div>
-        <div className="w-full">
+        <div layoutid='row' className="w-full">
           <RowContainer
             foodItems={items.filter(
               (i) => i.categories.toLowerCase() == filter.toLowerCase()
             )}
-            flag={true}
+            isSmallDev={window.innerWidth <= 768 ? true : false }
+            flag={false}
           />
         </div>
-      </AnimatePresence>
+        </AnimateSharedLayout>
+      {/* </AnimatePresence> */}
     </section>
   );
 };
