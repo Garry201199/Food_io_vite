@@ -1,13 +1,10 @@
+import { GoogleAuthProvider, getAuth } from "firebase/auth";
 import React, { useState } from "react";
-import { FcGoogle } from "react-icons/fc";
-import { motion } from "framer-motion";
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { app } from "../firebase.config";
-import userSlice from "../Store/user-Slice";
+// import userSlice from "../Store/user-Slice";
 import { useDispatch } from "react-redux";
-import { MdVisibility, MdVisibilityOff } from "react-icons/md";
-import SignUp from "./Auth/SignUp";
 import Login from "./Auth/Login";
+import SignUp from "./Auth/SignUp";
 
 
 const Modal = ({ setOpenModal, openModal }) => {

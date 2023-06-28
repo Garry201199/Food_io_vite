@@ -41,6 +41,7 @@ body::-webkit-scrollbar-thumb {
 
  
 html, body {
+  /* overscroll-behavior:unset ; */
   scroll-behavior: smooth ;
   overflow-x: hidden;
 }

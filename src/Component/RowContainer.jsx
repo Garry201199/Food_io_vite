@@ -46,7 +46,6 @@ const RowContainer = forwardRef(({ foodItems, isSmallDev, flag }, ref) => {
   return (
     <AnimatePresence mode="wait">
       <motion.div
-        layout
         variants={container}
         initial={"hidden"}
         animate={"visible"}
@@ -55,7 +54,7 @@ const RowContainer = forwardRef(({ foodItems, isSmallDev, flag }, ref) => {
           flag
             ? "overflow-x-scroll justify-between"
             : "flex-wrap justify-center space-x-4 space-y-4 "
-        }  scroll-x-4 px-4 transition-all   rounded-lg ease-linear duration-300 place-items-center  scroll-smooth scrollbar-none flex     my-4 text-slate-100 py-12 gap-y-4 gap-x-6 `}
+        }     px-4 transition-all relative  rounded-lg ease-linear duration-300 place-items-center  scroll-smooth scrollbar-none flex     my-4 text-slate-100 py-12 gap-y-4 gap-x-6 `}
       >
         {foodItems && foodItems.length > 1 ? (
           foodItems?.map((i, index) => (
@@ -67,14 +66,14 @@ const RowContainer = forwardRef(({ foodItems, isSmallDev, flag }, ref) => {
               exit={listVariants.exit(index)}
               transition={{ type: "linear", ease: "easeIn", duration: 0.6 }}
               key={i.id}
-              className="bg-bgTwo shadow-neo  min-w-[300px] max-h-fit   md:min-w-[380px] md:max-w-min   md:min-h-[240px]  
-            border-r border-whiteAlpha border-b
-           hover:shadow-neo2  group p-2  md:p-4  rounded-lg     "
+              className="bg-[#0a0a0a]/60   min-w-[300px] max-h-fit   md:min-w-[380px] md:max-w-min   md:min-h-[240px]  
+            border-r border-b  border-whiteAlpha  
+              group p-2  md:p-4  rounded-lg  shadow-neo  "
             >
               <div className="flex flex-col md:flex-row items-center justify-between">
                 <div className="flex  justify-between w-full    ">
                   <img
-                    className="object-scale-down   trans w-28 h-28 md:w-40 md:h-40 -mt-12 md:-mt-24 rounded-full group-hover:scale-125  duration-600"
+                    className="object-scale-down   trans w-28 h-28 md:w-40 md:h-40 -mt-12 md:-mt-24 rounded-full group-hover:scale-125 group-hover:rotate-3 duration-600"
                     src={i?.imageUrl}
                     alt={i.title}
                   />

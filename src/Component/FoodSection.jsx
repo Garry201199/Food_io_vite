@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useCallback, useRef } from "react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { motion } from "framer-motion";
 import RowContainer from "./RowContainer";
@@ -12,12 +12,12 @@ const FoodSection = () => {
 
   const scrollTo = (scrollOffset) => {
     containerRef.current.scrollLeft += scrollOffset;
-  };
+  }
   return (
     <section className="md:mx-16  px-4  text-[#cbcbcb]  md:py-8  ">
       <div className="flex items-center justify-between">
-        <p className="font-semibold flex w-fit text-[1.8rem] lg:text-[2.1rem] md:text-[2rem] relative ">
-          Our <span className="text-[#f97316] px-1">Fresh & Healthy</span> Foods
+        <p className="font-semibold flex flex-wrap w-fit text-[1.7rem] lg:text-[2.1rem] md:text-[2rem] relative ">
+          <span>Our</span>  <span className="text-[#f97316] px-2">Fresh & Healthy</span> <span>Foods</span> 
           <span className="w-[60%] h-[6px] md:h-2 absolute left-0 rounded-full -bottom-2 bg-[#f97316] ">
             {" "}
           </span>
@@ -45,6 +45,8 @@ const FoodSection = () => {
         foodItems={foodItems.filter((i) => i.categories == "Curry")}
         flag={true}
       />
+      {/* <div  className={`w-28 bg-gradient-to-r from-bgOne/10 to-bgTwo    h-full   right-0 absolute `}></div> */}
+      
     </section>
   );
 };

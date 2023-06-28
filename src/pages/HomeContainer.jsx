@@ -9,6 +9,7 @@ import FilterFoodsSection from "../Component/FilterFoodsSection";
 import CartSlider from "../Component/CartSlider";
 import { useSelector } from "react-redux";
 import { openCart } from "../store/cart-Slice";
+import { Footer } from "../Component/Footer";
 
 const container = {
     hidden: {
@@ -25,7 +26,6 @@ const container = {
 const HomeContainer = () => {
  
 
-  const isCartOpen = useSelector( openCart )
 
  
   return (
@@ -34,8 +34,9 @@ const HomeContainer = () => {
       variants={container}
       initial='hidden'
       whileInView={'show'}
+      viewport={{once:true  }}
       id="home"
-      className="flex flex-col items-center justify-center w-full mt-24 md:px-16 md:py-2"
+      className="flex flex-col overflow-y-hidden items-center justify-center w-full mt-24 md:px-16 md:py-2"
     >
       <div className="grid w-full grid-cols-1 gap-4 px-4 md:grid-cols-2 ">
       <div className="flex flex-col items-center justify-center flex-1 gap-6 py-2 md:items-start">
@@ -124,11 +125,8 @@ const HomeContainer = () => {
     </motion.section>
     <FoodSection/>
     <FilterFoodsSection/>
-    <AnimatePresence mode='wait' >
-    {
-      isCartOpen && <CartSlider isSmallDev={window.innerWidth <= 768 ? true : false }  />
-    }
-    </AnimatePresence>
+    
+    <Footer/>
     </>
   );
 };

@@ -34,7 +34,7 @@ const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   return (
-    <div>
+    <>
       {/* Desktop AppBar  */}
       <div className=" w-full py-3 justify-between  z-10 top-0 fixed hidden px-8  md:flex bg-bgTwo shadow-slate-600/50 shadow-lg  ">
         <Link to="/" className="relative flex items-center justify-center ml-8">
@@ -209,7 +209,7 @@ const Header = () => {
                     duration: 1,
                   },
                 }}
-                className="absolute z-20 w-screen max-w-screen px-8  top-[80px] -right-2  h-screen bg-gray-900 "
+                className="absolute z-20 w-screen max-w-screen px-8  top-[80px] -right-0  min-h-screen bg-gradient-to-t from-pink-900 to-purple-900 backdrop-blur-2xl "
               >
                 <div className="flex flex-col items-center justify-center w-full py-12 space-y-9 ">
                   <div className="relative w-16 h-16 rounded-full md:w-24 drop-shadow-2xl">
@@ -270,8 +270,8 @@ const Header = () => {
                       }}
                       className="inline-flex items-center justify-center 
 w-full  h-8 md:h-12 px-6 font-semibold md:tracking-wide
-text-gray-900 hover:text-gray-900 transition duration-300 ease-in-out  rounded
-shadow-md bg-[#3abff8] hover:bg-[#e1f6ff] 
+text-gray-50 hover:text-gray-900 transition duration-300 ease-in-out  rounded-full
+shadow-md bg-[#5ecd33] hover:bg-[#e1f6ff] 
 focus:shadow-outline focus:outline-none"
                     >
                       New Item <MdAdd size={25} className="ml-3" />
@@ -283,19 +283,10 @@ focus:shadow-outline focus:outline-none"
                       }}
                       className="inline-flex items-center justify-center 
        w-full h-8 md:h-12 px-6 font-semibold md:tracking-wide
-        text-gray-900 hover:text-gray-900 transition duration-300 ease-in-out rounded
-         shadow-md bg-[#3abff8] hover:bg-[#e1f6ff]
+        text-gray-100 hover:text-gray-900 transition duration-300 ease-in-out rounded-full
+         shadow-md bg-rose-700  hover:bg-rose-400
           focus:shadow-outline focus:outline-none"
-                    >
-                      {loggedIn ? (
-                        <>
-                          Log Out <MdLogout className="ml-3" size={25} />
-                        </>
-                      ) : (
-                        <>
-                          Log In <MdLogin size={25} className="ml-3" />
-                        </>
-                      )}
+                    >Log Out <MdLogout className="ml-3" size={25} />
                     </button>
                   </div>
                 </div>
@@ -304,7 +295,7 @@ focus:shadow-outline focus:outline-none"
           </AnimatePresence>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

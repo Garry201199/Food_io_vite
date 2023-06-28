@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import { IoArrowBackCircleSharp } from "react-icons/io5";
 import { MdRemoveShoppingCart } from "react-icons/md";
 import { FaMinusCircle, FaPlusCircle } from "react-icons/fa";
@@ -31,11 +31,15 @@ const CartSlider = ({ isSmallDev }) => {
   const openCurrentCart = useSelector(openCart);
   let hasRenderedCartItemsRef = useRef(false);
 
-  const subTotal = currentCartItems.reduce(
-    (acc, itr) => acc + itr.qty * +itr.price,
-    0
+  const subTotal = useMemo(
+    () => currentCartItems.reduce((acc, itr) => acc + itr.qty * +itr.price, 0),
+    [currentCartItems]
   );
-  const Total = subTotal >= 500 ? subTotal : subTotal - 40
+
+  const Total = useMemo(
+    () => (subTotal >= 500 ? subTotal : subTotal - 40),
+    [subTotal]
+  );
   console.log("🚀 ~ file: CartSlider.jsx:28 ~ CartSlider ~ subTotal", subTotal);
 
   useEffect(() => {
@@ -87,7 +91,7 @@ const CartSlider = ({ isSmallDev }) => {
         </div>
 
         {/* //? Below section */}
-        <div className="  pt-6 w-full relative bg-[#2d2d2d]  h-screen flex flex-col justify-between  rounded-t-[3rem] ">
+        <div className="  pb-14 sm:pb-1 pt-6 w-full relative bg-[#2d2d2d]/60  h-screen flex flex-col justify-between  rounded-t-[3rem] ">
           {/* //? Individual Item container  */}
           <div className="px-8 flex flex-col gap-y-3 overflow-y-auto scrollbar-none  ">
             {/* //? Individual Item  */}
@@ -123,9 +127,9 @@ const CartSlider = ({ isSmallDev }) => {
                     exit="removed"
                     custom={i}
                     key={cartItem.id}
-                    className=" bg-[#383838] drop-shadow-xl flex min-h-[5rem] items-center  px-4  rounded-2xl "
+                    className=" bg-[#353535] drop-shadow-xl backdrop-blur-sm flex min-h-[5rem] items-center  px-4  rounded-2xl "
                   >
-                    <div className=" w-1/3 flex justify-center ">
+                    <div className=" w-1/5    flex justify-center ">
                       {" "}
                       <img
                         className="w-16 h-16   object-contain "
@@ -133,9 +137,9 @@ const CartSlider = ({ isSmallDev }) => {
                         alt={cartItem?.title}
                       />
                     </div>
-                    <div className="flex w-2/3 flex-col items-start ">
+                    <div className="flex px-1 w-3/5 truncate flex-col items-start ">
                       {" "}
-                      <p className="text-lg truncate ">
+                      <p className="md:text-lg text-base   truncate ">
                         {cartItem?.title}{" "}
                       </p>{" "}
                       <p className="font-semibold text-sm ">
@@ -143,7 +147,7 @@ const CartSlider = ({ isSmallDev }) => {
                         $ {cartItem.price}
                       </p>{" "}
                     </div>
-                    <div className="w-1/3 text-xl   flex space-x-2 justify-center items-center   ">
+                    <div className="w-1/5 text-xl  backdrop-blur-xl flex space-x-2 justify-center items-center   ">
                       {" "}
                       <motion.button
                         onClick={() => dispatch(decrementItemQty(cartItem))}
@@ -175,27 +179,29 @@ const CartSlider = ({ isSmallDev }) => {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 500, opacity: 0 }}
               transition={{ duration: 0.5 }}
-              className="px-16 pt-8 h-[400px]   gap-y-6 bg-[#484848] drop-shadow-xl  flex flex-col w-full rounded-t-[3rem] "
+              className=" md:px-16 px-8 pt-8 h-[400px]   gap-y-6 bg-[#484848] drop-shadow-xl  flex flex-col w-full rounded-t-[3rem] "
             >
-                {subTotal >= 500 ? (
-                <motion.div 
-                initial={{opacity:0 ,x:100, scale:0 }}
-                animate={{opacity:1 ,x:0, scale:1 }}
-                exit={{opacity:0 , scale:0 }}  transition={{ duration: 0.5 }}
-                className="flex w-full rounded-full text-base justify-center  text-white bg-[#32cd32]/80    items-center">
+              {subTotal >= 500 ? (
+                <motion.div
+                  initial={{ opacity: 0, x: 100, scale: 0 }}
+                  animate={{ opacity: 1, x: 0, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="flex w-full rounded-full text-base justify-center  text-white bg-[#32cd32]/80    items-center"
+                >
                   🎊Your are now eligible for free delivery !🎊
                 </motion.div>
               ) : (
-                <motion.div 
-                initial={{opacity:0 , scale:0 }}
-                animate={{opacity:1 , scale:1 }}
-                exit={{opacity:0 , scale:0 }} 
-                transition={{ duration: 0.5 }} 
-                className="flex w-full rounded-full justify-center  text-white bg-gradient-to-t from-[#255CD2]  to-[#1D52C1] text-base   items-center">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="flex w-full rounded-full justify-center  text-white bg-gradient-to-t from-[#255CD2]  to-[#1D52C1] text-base   items-center"
+                >
                   Free delivery above cart worth $ 500
                 </motion.div>
               )}
-              
 
               <div className="w-full divide-y-2  gap-y-6 flex flex-col">
                 <div>

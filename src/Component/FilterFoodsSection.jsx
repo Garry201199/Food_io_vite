@@ -18,12 +18,11 @@ import { Items } from "../store/items-Slice";
 // }
 const FilterFoodsSection = () => {
   const [filter, setFilter] = useState("Chicken");
- 
+
   const items = useSelector(Items);
 
-
   return (
-    <section className="md:mx-16 bg-gradient-to-t  from-[#0e1015] to-[#16181d]  px-4  text-[#cbcbcb]  md:py-8  ">
+    <section className="md:mx-16 bg-gradient-to-t  from-[#010101] to-[#121213]  px-4  text-[#cbcbcb]  md:py-8  ">
       <div className="flex items-center  justify-between">
         <p className="font-semibold w-fit text-[1.8rem] lg:text-[2.1rem] md:text-[2rem] relative ">
           Our <span className="text-[#f97316]">Hot</span> Dishes
@@ -32,18 +31,18 @@ const FilterFoodsSection = () => {
           </span>
         </p>
       </div>
-      {/* <AnimatePresence mode="wait" initial={false}> */}
-      <AnimateSharedLayout type="crossfade" >
-        <div layoutid='row' className=" flex  px-4 gap-6  rounded-lg mt-3 drop-shadow-lg justify-start  py-6 scrollbar-none lg:justify-center items-center overflow-x-auto scroll-smooth  w-full  ">
+      <AnimateSharedLayout type="crossfade">
+        <div
+          layoutid="row"
+          className=" flex  px-4 gap-6  rounded-lg mt-3 drop-shadow-lg justify-start  py-6 scrollbar-none lg:justify-center items-center overflow-x-auto scroll-smooth  w-full  "
+        >
           {categories &&
             categories.map((category, index) => (
               <motion.div
                 whileTap={{ scale: 0.85 }}
                 key={category.id}
                 className={`group   ${
-                  filter === category.urlParamName
-                    ? "bg-[#918ced]"
-                    : "bg-bgTwo" 
+                  filter === category.urlParamName ? "bg-[#918ced]" : "bg-bgTwo"
                 }   cursor-pointer w-24 md:w-28 min-w-[94px] h-28 hover:bg-[#918ced]  rounded-lg drop-shadow-xl  flex flex-col gap-3 items-center justify-center   `}
                 onClick={() => setFilter(category.urlParamName)}
               >
@@ -68,17 +67,17 @@ const FilterFoodsSection = () => {
               </motion.div>
             ))}
         </div>
-        <div layoutid='row' className="w-full">
+        <div layoutid="row" className="w-full">
           <RowContainer
             foodItems={items.filter(
               (i) => i.categories.toLowerCase() == filter.toLowerCase()
             )}
-            isSmallDev={window.innerWidth <= 768 ? true : false }
+            isSmallDev={window.innerWidth <= 768 ? true : false}
             flag={false}
           />
         </div>
-        </AnimateSharedLayout>
-      {/* </AnimatePresence> */}
+      </AnimateSharedLayout>
+
     </section>
   );
 };

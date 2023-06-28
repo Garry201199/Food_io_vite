@@ -11,7 +11,7 @@ import HomeContainer from "./pages/HomeContainer";
 import { variants } from "./variants/variants";
 import { useDispatch } from "react-redux";
 import { getAllItems } from "./utils/firebaseFunctions";
-import { useEffect  } from "react";
+import { useEffect } from "react";
 import { setAllItems } from "./store/items-Slice";
 import { fetchLocalStorageData } from "./utils/fetchLocalStorage";
 import { setInitialUser } from "./store/user-Slice";
@@ -35,8 +35,8 @@ function App() {
 
   return (
     <AuthcontextProvider>
-      <div className="relative   w-screen  overflow-hidden min-h-screen select-none bg-bgOne flex flex-col ">
-        <AnimatePresence mode="wait">
+      <div className="relative   w-screen  overflow-hidden min-h-screen select-none  bg-[#000000] flex flex-col ">
+        <AnimatePresence mode="sync">
           <Routes location={location} key={location.pathname}>
             <Route element={<ProtectedRoutes />}>
               <Route
