@@ -306,7 +306,7 @@ const CreateContainer = () => {
                 {!imageAsset ? (
                   <>
                     <label
-                      for="dropzone-file"
+                      htmlFor="dropzone-file"
                       className="flex flex-col items-center justify-center w-full h-full"
                     >
                       <div className="flex flex-col items-center justify-center pt-5 pb-6 text-center">
@@ -362,7 +362,7 @@ const CreateContainer = () => {
                 value={calories}
                 onChange={(e) => setCalories(e.target.value)}
                 required
-                placeHolder="Calories"
+                placeholder="Calories"
                 className="w-full h-full text-lg text-white bg-transparent outline-none "
               ></input>
             </div>
@@ -373,7 +373,7 @@ const CreateContainer = () => {
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
                 required
-                placeHolder="Price"
+                placeholder="Price"
                 className="w-full h-full text-lg text-white bg-transparent outline-none "
               ></input>
             </div>
