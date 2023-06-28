@@ -1,15 +1,12 @@
-import React ,{useEffect} from "react";
+import { motion } from "framer-motion";
+import React from "react";
+import FilterFoodsSection from "../Component/FilterFoodsSection";
+import FoodSection from "../Component/FoodSection";
+import { Footer } from "../Component/Footer";
 import bike from "../img/delivery.png";
 import bg from "../img/heroBg.png";
 import { heroData } from "../utils/heroData";
-import { AnimatePresence, motion } from "framer-motion";
-import {fadeIn} from '../variants/variants'
-import FoodSection from "../Component/FoodSection";
-import FilterFoodsSection from "../Component/FilterFoodsSection";
-import CartSlider from "../Component/CartSlider";
-import { useSelector } from "react-redux";
-import { openCart } from "../store/cart-Slice";
-import { Footer } from "../Component/Footer";
+import { fadeIn } from '../variants/variants';
 
 const container = {
     hidden: {

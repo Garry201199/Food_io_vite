@@ -54,7 +54,6 @@ export const categories = [
       icon: (<FaIceCream  className="text-slate-800 text-lg group-hover:text-slate-800    " />)
 
     },
-  
     {
       id: 7,
       name: "Soft Drinks",
