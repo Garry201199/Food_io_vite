@@ -3,7 +3,7 @@ import itemsSlice from "./items-Slice";
 import userSlice from "./user-Slice";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
-import cartSlice from "./cart-Slice";
+import cartSlice from "./cart-slice";
 
 const rootConfig = {
   key: "root",

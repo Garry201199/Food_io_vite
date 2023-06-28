@@ -37,7 +37,7 @@ const cartSlice = createSlice({
     handleOpenCartState: (state) => {
       
       state.openCart = !state.openCart;
-      console.log("🚀 ~ file: cart-Slice.js:40 ~ state.openCart", state.openCart)
+      console.log("🚀 ~ file: cart-slice.js:40 ~ state.openCart", state.openCart)
     },
     addItemsToCart: (state, action) => {
       const doesItemExists = state.cartItems.find(

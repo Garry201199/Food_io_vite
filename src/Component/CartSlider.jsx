@@ -11,7 +11,7 @@ import {
   handleOpenCartState,
   incrementItemQty,
   openCart,
-} from "../store/cart-Slice";
+} from "../store/cart-slice";
 const container = {
   hidden: {
     opacity: 0,

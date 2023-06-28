@@ -13,7 +13,7 @@ import {
   MdRestaurantMenu,
 } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { cartItems, handleOpenCartState } from "../store/cart-Slice";
+import { cartItems, handleOpenCartState } from "../store/cart-slice";
 const menuItems = [
   { id: 0, title: "Home" },
   { id: 1, title: "Menu" },

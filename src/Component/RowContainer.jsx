@@ -2,7 +2,7 @@ import React, { forwardRef } from "react";
 import { BsBucketFill } from "react-icons/bs";
 import { AnimatePresence, motion } from "framer-motion";
 import Page_Not_Found from "../img/NotFound.svg";
-import { addItemsToCart } from "../store/cart-Slice";
+import { addItemsToCart } from "../store/cart-slice";
 import { useDispatch } from "react-redux";
 const RowContainer = forwardRef(({ foodItems, isSmallDev, flag }, ref) => {
   // const ref = useRef(null);

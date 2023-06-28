@@ -13,7 +13,7 @@ import { useNavigate  } from "react-router-dom";
 import { toast } from "react-toastify";
 import { app } from "../firebase.config";
 import useAuthStatus from "../hooks/useAuthStatus";
-import {  handleClearCart } from "../store/cart-Slice";
+import {  handleClearCart } from "../store/cart-slice";
 import { removeUser, setInitialUser, User } from "../store/user-Slice";
 
 const AuthContext = createContext();
